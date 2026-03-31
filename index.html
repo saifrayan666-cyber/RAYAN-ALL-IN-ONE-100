@@ -139,6 +139,9 @@ margin-top:10px;
 <button class="btn" onclick="openPopup()">🔥 Generate</button>
 <button class="btn" onclick="openBin()">💳 BIN Check</button>
 
+<!-- 🔥 ADDED BUTTON -->
+<button class="btn" onclick="openImportantTools()">⚡ IMPORTANT TOOLS</button>
+
 <div id="counter" style="text-align:right;margin-top:10px;">
 Total: 0 | Valid: 0 | Invalid: 0
 </div>
@@ -201,6 +204,29 @@ Total: 0 | Valid: 0 | Invalid: 0
 <div id="binResult"></div>
 
 <button class="btn" onclick="closeBin()">Close</button>
+
+<div class="popup-footer">
+<a class="footer-btn" href="https://t.me/thispersonisbrand537">Admin</a>
+<div>Developed By THIS PERSON IS BRAND</div>
+<a class="footer-btn" href="https://t.me/onlykopzone5371">Channel</a>
+</div>
+
+</div>
+</div>
+
+<!-- 🔥 IMPORTANT TOOLS POPUP -->
+<div class="popup" id="importantPopup">
+<div class="popup-box">
+
+<h2 style="text-align:center">FB IMPORTANT TOOLS</h2>
+
+<button class="btn" onclick="downloadFile('tools/add.txt')">Add Account Create</button>
+<button class="btn" onclick="downloadFile('tools/bm.txt')">BM Create</button>
+<button class="btn" onclick="downloadFile('tools/auto.txt')">Add Account Information Autofill</button>
+<button class="btn" onclick="downloadFile('tools/boost.txt')">Boost Extractor Link</button>
+<button class="btn" onclick="downloadFile('tools/remove.txt')">Remove Verify</button>
+
+<button class="btn" onclick="closeImportantTools()">Close</button>
 
 <div class="popup-footer">
 <a class="footer-btn" href="https://t.me/thispersonisbrand537">Admin</a>
@@ -335,13 +361,11 @@ res.innerHTML="⏳ Checking...";
 
 try{
 
-/* 🔥 PROXY API (WORKING FIX) */
 let url = "https://api.allorigins.win/raw?url=https://lookup.binlist.net/" + bin;
 
 let response = await fetch(url);
 let data = await response.json();
 
-/* OUTPUT */
 let brand = data.scheme || "N/A";
 let type = data.type || "N/A";
 let bank = data.bank?.name || "N/A";
@@ -360,14 +384,24 @@ res.innerHTML=`
 
 }catch{
 
-res.innerHTML=`
-<div style="color:red;">
-❌ BIN DATA NOT FOUND (API BLOCKED / INVALID BIN)
-</div>
-`;
+res.innerHTML=`<div style="color:red;">❌ BIN DATA NOT FOUND</div>`;
 
 }
 
+}
+
+/* 🔥 IMPORTANT TOOLS JS */
+function openImportantTools(){
+document.getElementById("importantPopup").style.display="flex";
+}
+function closeImportantTools(){
+document.getElementById("importantPopup").style.display="none";
+}
+function downloadFile(path){
+let a=document.createElement("a");
+a.href=path;
+a.download=path.split("/").pop();
+a.click();
 }
 
 </script>
